@@ -43,7 +43,7 @@ public abstract class IntegrationEnvironment {
 
     private static void runMigrations() {
         try {
-            Path parentDirectory = new File("..").toPath();
+            Path parentDirectory = new File(".").toPath().toAbsolutePath();
             Path changeLogPath = parentDirectory.resolve("/migrations/master.xml");
             try {
                 Database database =

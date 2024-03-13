@@ -9,7 +9,10 @@ import org.springframework.web.service.annotation.DeleteExchange;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.PostExchange;
 import org.springframework.web.service.annotation.PutExchange;
-
+/**
+ * HTTP interface for interacting with the Albums Repository service.
+ * Provides methods for retrieving, adding, updating, and deleting albums.
+ */
 public interface AlbumsRepositoryService {
     @GetExchange("/albums/{id}")
     DefaultAlbumResponse getAlbum(@PathVariable("id") long id);

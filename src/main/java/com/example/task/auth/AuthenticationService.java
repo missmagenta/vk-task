@@ -11,7 +11,7 @@ import com.example.task.payload.BasePayload;
 import com.example.task.payload.Payload;
 import com.example.task.model.user.User;
 import com.example.task.payload.PayloadWithUser;
-import com.example.task.payload.UserPayload;
+import com.example.task.auth.dto.UserPayload;
 import com.example.task.repository.ManagerRepository;
 import com.example.task.repository.PersonRepository;
 import com.example.task.repository.UserRepository;
@@ -63,7 +63,6 @@ public class AuthenticationService {
         );
 
         return new PayloadWithUser(200, userPayload);
-//        return null;
     }
 
     public Payload registerUser(UserSignUpRequest signupUser) {
@@ -112,7 +111,6 @@ public class AuthenticationService {
         );
 
         return new PayloadWithUser(200, userPayload);
-//        return null;
     }
 
     private LoginedUser login(String username, String password) {

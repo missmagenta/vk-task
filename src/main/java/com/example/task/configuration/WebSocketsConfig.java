@@ -19,6 +19,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+/**
+ * Configuration class for customizing WebSocket inbound channel behavior.
+ * This class implements WebSocketMessageBrokerConfigurer to configure WebSocket message broker handling.
+ */
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -42,6 +46,12 @@ public class WebSocketsConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/ws");
     }
 
+    /**
+     * Configures the client inbound channel with interceptors for processing incoming messages.
+     * This method intercepts CONNECT messages to authenticate users using JWT tokens.
+     *
+     * @param registration The registration object representing the client inbound channel.
+     */
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
         registration.interceptors(new ChannelInterceptor() {

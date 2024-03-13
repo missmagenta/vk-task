@@ -3,7 +3,6 @@ package com.example.task.service;
 import com.example.task.model.audit.LogRecord;
 import com.example.task.model.audit.Status;
 import com.example.task.repository.AuditLogRepository;
-import com.example.task.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,11 +14,15 @@ import java.time.LocalDateTime;
 @Service
 public class AuditLogService {
 
-    @Autowired
-    private HttpServletRequest request;
+    private final HttpServletRequest request;
+
+    private final AuditLogRepository auditLogRepository;
 
     @Autowired
-    private AuditLogRepository auditLogRepository;
+    public AuditLogService(HttpServletRequest request, AuditLogRepository auditLogRepository) {
+        this.request = request;
+        this.auditLogRepository = auditLogRepository;
+    }
 
     public void logRequest(Status status) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

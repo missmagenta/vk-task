@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 import static com.example.task.auth.UserConverter.getRoleByManager;
 
+/**
+ * Service class that implements the UserDetailsService interface to provide user-related functionality.
+ */
 @RequiredArgsConstructor
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -32,7 +35,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Manager manager = managerRepository.getCurrentByPersonId(user.getPersonId());
         user.setRole(getRoleByManager(manager));
         return UserDetailsImpl.build(user);
-
     }
 
     public User getUser() {

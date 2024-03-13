@@ -7,7 +7,10 @@ import org.jooq.Record;
 import org.springframework.stereotype.Component;
 
 import static com.example.task.utils.TableAliases.MANAGER_TABLE;
-
+/**
+ * Mapper class responsible for mapping jOOQ Records to domain-specific Manager objects.
+ * This mapper is used to convert database records into application-specific domain objects.
+ */
 @Component
 public class ManagerRecordMapper {
 

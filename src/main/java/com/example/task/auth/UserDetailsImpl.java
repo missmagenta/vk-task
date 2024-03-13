@@ -11,6 +11,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Custom implementation of Spring Security UserDetails interface.
+ * This class represents user details retrieved from the database and utilized for authentication and authorization purposes.
+ */
 public class UserDetailsImpl implements UserDetails {
     @Serial
     private static final long serialVersionUID = 1L;

@@ -2,7 +2,7 @@
 
 --changeset magenta:1_13.03.2024
 
-CREATE TYPE IF NOT EXISTS gender_enum as ENUM ('M', 'F');
+CREATE TYPE gender_enum as ENUM ('M', 'F');
 
 CREATE TABLE IF NOT EXISTS "person" (
                           "id" SERIAL PRIMARY KEY,

@@ -8,12 +8,6 @@ public class PayloadWithData<T> implements Payload {
     private final String message;
     private final T data;
 
-    public PayloadWithData(Integer code, String message, T data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
-    }
-
     public PayloadWithData(Integer code, T data) {
         this.code = code;
         this.message = "";
@@ -22,7 +16,7 @@ public class PayloadWithData<T> implements Payload {
 
     public T data() {
         return data;
-    };
+    }
 
     @Override
     public Integer code() {

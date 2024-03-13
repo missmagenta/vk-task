@@ -1,9 +1,6 @@
 package com.example.task.repository;
 
 import com.example.task.mapper.UserRecordMapper;
-import org.springframework.stereotype.Repository;
-
-
 import com.example.task.model.user.User;
 import org.jooq.Condition;
 import org.jooq.DSLContext;

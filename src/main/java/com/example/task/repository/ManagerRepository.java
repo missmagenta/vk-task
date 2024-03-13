@@ -1,14 +1,9 @@
 package com.example.task.repository;
 
 import com.example.task.mapper.ManagerRecordMapper;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
-
-
 import com.example.task.model.official.Manager;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,7 +1,9 @@
 package com.example.task.ws;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -13,8 +15,10 @@ import java.util.concurrent.ExecutionException;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class EchoWebSocketConnection extends TextWebSocketHandler {
     private WebSocketSession webSocketSession;
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
     @Value("${echo.websocket.url}")
     private String echoWebSocketUrl;
@@ -39,13 +43,9 @@ public class EchoWebSocketConnection extends TextWebSocketHandler {
         }
     }
 
-    public void echo(String message) {
+    public void echo(Message message) {
         if (webSocketSession != null && webSocketSession.isOpen()) {
-            try {
-                webSocketSession.sendMessage(new TextMessage(message));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            simpMessagingTemplate.convertAndSendToUser(message.username(), "/topic", message);
         }
     }
 
@@ -55,7 +55,7 @@ public class EchoWebSocketConnection extends TextWebSocketHandler {
     }
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) {
         log.info("Message received from server: " + message.getPayload());
     }
 }

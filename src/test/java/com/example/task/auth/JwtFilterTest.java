@@ -1,5 +1,5 @@
 package com.example.task.auth;
-import com.example.task.auth.UserDetailsServiceImpl;
+
 import com.example.task.auth.jwt.AuthTokenFilter;
 import com.example.task.auth.jwt.JwtUtils;
 import com.example.task.model.audit.Status;
@@ -8,23 +8,14 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import static org.mockito.Mockito.*;
 

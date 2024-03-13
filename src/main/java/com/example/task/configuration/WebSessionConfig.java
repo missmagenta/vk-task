@@ -13,6 +13,12 @@ public class WebSessionConfig {
         return new SessionRegistryImpl();
     }
 
+    /**
+     * Bean definition for creating an HTTP session event publisher.
+     * This bean is necessary for handling session-related events.
+     *
+     * @return An HttpSessionEventPublisher instance.
+     */
     @Bean
     public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();

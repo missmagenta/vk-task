@@ -4,9 +4,7 @@ package com.example.task.configuration;
 import com.example.task.auth.UserDetailsServiceImpl;
 import com.example.task.auth.jwt.AuthEntryPointJwt;
 import com.example.task.auth.jwt.AuthTokenFilter;
-import com.example.task.model.user.UserRole;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.example.task.model.user.UserRole.*;
 import static com.example.task.model.user.ExtendedUserRole.*;
 import static org.springframework.http.HttpMethod.*;
 

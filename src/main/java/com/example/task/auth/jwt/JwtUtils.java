@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 
+/**
+ * This class provides utility methods for handling JWT tokens.
+ */
 @Slf4j
 @Component
 public class JwtUtils {
@@ -22,6 +25,12 @@ public class JwtUtils {
     @Value("${app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
+    /**
+     * Generates a JWT token based on the authentication information.
+     *
+     * @param authentication The authentication object representing the user's authentication details.
+     * @return The generated JWT token.
+     */
     public String generateJwtToken(Authentication authentication) {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();

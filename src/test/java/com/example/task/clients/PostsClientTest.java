@@ -1,7 +1,5 @@
 package com.example.task.clients;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.example.task.client.jsonplaceholder.PostsClient;
 import com.example.task.client.jsonplaceholder.dto.posts.AddPostRequest;
 import com.example.task.client.jsonplaceholder.dto.posts.DefaultPostResponse;
@@ -13,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.cache.Cache;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,7 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)

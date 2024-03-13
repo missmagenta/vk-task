@@ -15,9 +15,13 @@ public final class UserConverter {
         return new LoginedUser(userDetails.getUsername(), userRole, jwt);
     }
 
-    public static LoginedUser convertToUserDTO(User user) {
-        return new LoginedUser(user.getUsername(), user.getRole(), "");
-    }
+    /**
+     * Gets the user role based on the role of the provided Manager entity.
+     *
+     * @param manager The Manager entity whose role needs to be determined.
+     * @return The UserRole corresponding to the role of the manager.
+     *         Returns UserRole.INVALID if the manager is null or the role is unrecognized.
+     */
 
     public static UserRole getRoleByManager(Manager manager) {
         if (manager == null) return UserRole.INVALID;
