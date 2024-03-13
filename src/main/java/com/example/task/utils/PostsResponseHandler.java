@@ -1,8 +1,7 @@
-package com.example.task.service;
+package com.example.task.utils;
 
-import com.example.task.client.jsonplaceholder.dto.posts.PostResponse;
+import com.example.task.client.jsonplaceholder.dto.posts.DefaultPostResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -11,9 +10,8 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class PostsResponseHandler {
-//    private final PostsClient client;
 
-    public String handlePost(PostResponse response) {
+    public String handlePost(DefaultPostResponse response) {
         if (response != null) {
             return String.format("Post with id %s. User id - %s. The title: %s. Contents: %s",
                     response.id(), response.userId(), response.title(), response.body());
@@ -22,14 +20,11 @@ public class PostsResponseHandler {
         }
     }
 
-    public List<String> handlePosts(PostResponse[] responses) {
+    public List<String> handlePosts(DefaultPostResponse[] responses) {
         return Arrays.stream(responses)
                 .toList()
                 .stream()
-                .map(post -> String.format("Post with id %s. User id - %s. The title: %s. Contents: %s \n",
-                        post.id(), post.userId(), post.title(), post.body()))
+                .map(this::handlePost)
                 .toList();
     }
-
-
 }

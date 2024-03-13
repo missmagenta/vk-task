@@ -10,16 +10,10 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 public class LogRecord {
-
     private Integer id;
-
     private String username;
-
     private LocalDateTime requestDateTime;
-
     private String requestUrl;
-
     private String method;
-
     private Status status;
 }

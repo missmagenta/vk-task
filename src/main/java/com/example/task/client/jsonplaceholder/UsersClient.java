@@ -25,5 +25,5 @@ public interface UsersClient {
                                                   String website,
                                                   UserCompany company);
 
-    Void deleteUser(long id);
+    ResponseEntity<Void> deleteUser(long id);
 }

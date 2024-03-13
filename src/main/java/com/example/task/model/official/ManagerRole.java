@@ -6,10 +6,10 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum ManagerRole {
-    ADMIN("Admin"),
-    POSTS_MANAGER("PostsManager"),
-    USERS_MANAGER("UsersManager"),
-    ALBUMS_MANAGER("AlbumsManager");
+    ADMIN("ADMIN"),
+    POSTS_MANAGER("POSTS_MANAGER"),
+    USERS_MANAGER("USERS_MANAGER"),
+    ALBUMS_MANAGER("ALBUMS_MANAGER");
 
     private final String displayRole;
 }

@@ -1,12 +1,11 @@
 package com.example.task.auth.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
-@Getter
-public class UserAuthRequest {
-    @NotBlank
-    private String username;
-    @NotBlank
-    private String password;
+
+public record UserAuthRequest(@JsonProperty("username") @NotBlank String username,
+                              @NotBlank String password) {
+
 }

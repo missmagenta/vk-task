@@ -1,6 +1,13 @@
 package com.example.task.model.audit;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Getter
 public enum Status {
-    SUCCEEDED,
-    REJECTED
+    SUCCEEDED("SUCCEEDED"),
+    REJECTED("REJECTED");
+
+    private final String displayStatus;
 }

@@ -14,6 +14,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,9 +31,9 @@ import static org.springframework.http.HttpMethod.*;
 public class WebSecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
     private final AuthEntryPointJwt unauthorizedHandler;
-    private static final String POSTS_API_PATTERN = "/api/posts/**";
-    private static final String USERS_API_PATTERN = "/api/users/**";
-    private static final String ALBUMS_API_PATTERN = "/api/albums/**";
+    private static final String POSTS_API_PATTERN = "/posts/**";
+    private static final String USERS_API_PATTERN = "/users/**";
+    private static final String ALBUMS_API_PATTERN = "/albums/**";
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -61,15 +62,14 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/auth/**", "/ws/**").permitAll()
 
-                                .requestMatchers(POSTS_API_PATTERN).hasAnyRole(
-                                        ADMIN.name(), POSTS.name())
                                 .requestMatchers(GET,POSTS_API_PATTERN).hasAnyRole(
                                         ADMIN_VIEW.name(), POSTS_VIEW.name())
                                 .requestMatchers(POST,POSTS_API_PATTERN).hasAnyRole(
@@ -80,8 +80,6 @@ public class WebSecurityConfig {
                                         ADMIN_DELETE.name(), POSTS_DELETE.name())
 
 
-                                .requestMatchers(USERS_API_PATTERN).hasAnyRole(
-                                        ADMIN.name(), USERS.name())
                                 .requestMatchers(GET, USERS_API_PATTERN).hasAnyRole(
                                         ADMIN_VIEW.name(), USERS_VIEW.name())
                                 .requestMatchers(POST, USERS_API_PATTERN).hasAnyRole(
@@ -92,8 +90,6 @@ public class WebSecurityConfig {
                                         ADMIN_DELETE.name(), USERS_DELETE.name())
 
 
-                                .requestMatchers(ALBUMS_API_PATTERN).hasAnyRole(
-                                        ADMIN.name(), ALBUMS.name())
                                 .requestMatchers(GET, ALBUMS_API_PATTERN).hasAnyRole(
                                         ADMIN_VIEW.name(), ALBUMS_VIEW.name())
                                 .requestMatchers(POST, ALBUMS_API_PATTERN).hasAnyRole(
@@ -102,15 +98,12 @@ public class WebSecurityConfig {
                                         ADMIN_UPDATE.name(), ALBUMS_UPDATE.name())
                                 .requestMatchers(DELETE, ALBUMS_API_PATTERN).hasAnyRole(
                                         ADMIN_DELETE.name(), ALBUMS_DELETE.name())
-
-
-                                .requestMatchers("/ws/**").permitAll()
                                 .anyRequest().authenticated()
-                );
+                )
+                .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.authenticationProvider(authenticationProvider());
-
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

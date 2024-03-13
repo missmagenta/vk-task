@@ -1,9 +1,8 @@
 package com.example.task.client.jsonplaceholder.impl;
 
 import com.example.task.client.jsonplaceholder.dto.posts.AddPostRequest;
-import com.example.task.client.jsonplaceholder.dto.posts.PostResponse;
+import com.example.task.client.jsonplaceholder.dto.posts.DefaultPostResponse;
 import com.example.task.client.jsonplaceholder.dto.posts.UpdatePostRequest;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,21 +12,22 @@ import org.springframework.web.service.annotation.PostExchange;
 import org.springframework.web.service.annotation.PutExchange;
 
 public interface PostsRepositoryService {
+
     @GetExchange("/posts/{id}")
-    PostResponse getPost(@PathVariable("id") long id);
+    DefaultPostResponse getPost(@PathVariable("id") long id);
 
     @GetExchange("/posts")
-    PostResponse[] listPosts();
+    DefaultPostResponse[] listPosts();
 
     @PostExchange("/posts")
-    ResponseEntity<PostResponse> addPost(
+    ResponseEntity<DefaultPostResponse> addPost(
             @RequestBody AddPostRequest addPostRequest);
 
     @PutExchange("/posts/{id}")
-    ResponseEntity<PostResponse> updatePost(
+    ResponseEntity<DefaultPostResponse> updatePost(
             @PathVariable("id") long id,
             @RequestBody UpdatePostRequest updatePostRequest);
 
     @DeleteExchange("/posts/{id}")
-    Void deletePost(@PathVariable("id") long id);
+    ResponseEntity<Void> deletePost(@PathVariable("id") long id);
 }

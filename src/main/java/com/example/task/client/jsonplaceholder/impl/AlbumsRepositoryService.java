@@ -12,13 +12,13 @@ import org.springframework.web.service.annotation.PutExchange;
 
 public interface AlbumsRepositoryService {
     @GetExchange("/albums/{id}")
-    AlbumResponse getAlbum(@PathVariable("id") long id);
+    DefaultAlbumResponse getAlbum(@PathVariable("id") long id);
 
     @GetExchange("/albums")
-    AlbumResponse[] listAlbums();
+    DefaultAlbumResponse[] listAlbums();
 
     @GetExchange("/albums")
-    AlbumResponse[] getAlbumsByUser(@RequestParam("userId") long userId);
+    DefaultAlbumResponse[] getAlbumsByUser(@RequestParam("userId") long userId);
 
     @PostExchange("/albums")
     ResponseEntity<AddAlbumResponse> addAlbum(
@@ -32,5 +32,5 @@ public interface AlbumsRepositoryService {
     );
 
     @DeleteExchange("albums/{id}")
-    Void deleteAlbum(@PathVariable("id") long id);
+    ResponseEntity<Void> deleteAlbum(@PathVariable("id") long id);
 }

@@ -25,7 +25,8 @@ public enum ExtendedUserRole {
     ALBUMS_VIEW("ALBUMS: VIEW"),
     ALBUMS_CREATE("ALBUMS: CREATE"),
     ALBUMS_UPDATE("ALBUMS: UPDATE"),
-    ALBUMS_DELETE("ALBUMS: DELETE");
+    ALBUMS_DELETE("ALBUMS: DELETE"),
+    INVALID_ACCESS("INVALID");
 
     private final String permission;
 }

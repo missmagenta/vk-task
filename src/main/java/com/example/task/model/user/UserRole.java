@@ -5,20 +5,28 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Set;
 
+import static com.example.task.model.user.ExtendedUserRole.*;
+
 @Getter
 @RequiredArgsConstructor
 public enum UserRole {
     ADMIN(Set.of(
-            "POSTS_VIEWER",
-            "POSTS_EDITOR",
-            "USERS_VIEWER",
-            "USERS_EDITOR",
-            "ALBUMS_VIEWER",
-            "ALBUMS_EDITOR")),
-    POSTS(Set.of("POSTS_VIEWER", "POSTS_EDITOR")),
-    USERS(Set.of("USERS_VIEWER", "USERS_EDITOR")),
-    ALBUMS(Set.of("ALBUMS_VIEWER", "ALBUMS_EDITOR")),
-    INVALID(Set.of("INVALID"));
+            POSTS_VIEW,
+            POSTS_CREATE,
+            POSTS_UPDATE,
+            POSTS_DELETE,
+            USERS_VIEW,
+            USERS_CREATE,
+            USERS_UPDATE,
+            USERS_DELETE,
+            ALBUMS_VIEW,
+            ALBUMS_CREATE,
+            ALBUMS_UPDATE,
+            ALBUMS_DELETE)),
+    POSTS(Set.of(POSTS_VIEW, POSTS_CREATE, POSTS_UPDATE, POSTS_DELETE)),
+    USERS(Set.of(USERS_VIEW, USERS_CREATE, USERS_UPDATE, USERS_DELETE)),
+    ALBUMS(Set.of(ALBUMS_VIEW, ALBUMS_CREATE, ALBUMS_UPDATE, ALBUMS_DELETE)),
+    INVALID(Set.of(INVALID_ACCESS));
 
-    private final Set<String> subRoles;
+    private final Set<ExtendedUserRole> subRoles;
 }

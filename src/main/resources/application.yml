@@ -5,15 +5,12 @@ app:
 server:
   port: 8080
 
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/vk
-    username: postgres
-    password: aboba
+    username: ${USERNAME}
+    password: ${PASSWORD}
 
-  clickhouse:
-    datasource:
-      url: jdbc:clickhouse://your-clickhouse-host:8123/your-database
-      username: your-username
-      password: your-password
+echo:
+  websocket:
+    url: "wss://echo.websocket.org"

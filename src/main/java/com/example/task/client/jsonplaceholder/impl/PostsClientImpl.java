@@ -2,7 +2,7 @@ package com.example.task.client.jsonplaceholder.impl;
 
 import com.example.task.client.jsonplaceholder.PostsClient;
 import com.example.task.client.jsonplaceholder.dto.posts.AddPostRequest;
-import com.example.task.client.jsonplaceholder.dto.posts.PostResponse;
+import com.example.task.client.jsonplaceholder.dto.posts.DefaultPostResponse;
 import com.example.task.client.jsonplaceholder.dto.posts.UpdatePostRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
@@ -16,28 +16,35 @@ public class PostsClientImpl implements PostsClient {
     private final PostsRepositoryService service;
 
     @Override
-    @CachePut(cacheNames = "posts", key = "#id")
-    public PostResponse getPost(long id) {
+    @Cacheable(cacheNames = "posts", key = "#id")
+    public DefaultPostResponse getPost(long id) {
         return service.getPost(id);
     }
 
     @Override
-    public PostResponse[] listPosts() {
+    public DefaultPostResponse[] listPosts() {
         return service.listPosts();
     }
 
     @Override
-    public ResponseEntity<PostResponse> addPost(String title, String body, long userId) {
+    @CachePut(cacheNames = "posts", key = "#userId")
+    public ResponseEntity<DefaultPostResponse> addPost(String title,
+                                                       String body,
+                                                       long userId) {
         return service.addPost(new AddPostRequest(title, body, userId));
     }
 
     @Override
-    public ResponseEntity<PostResponse> updatePost(long id, String title, String body, long userId) {
+    @CachePut(cacheNames = "posts", key = "#userId")
+    public ResponseEntity<DefaultPostResponse> updatePost(long id,
+                                                          String title,
+                                                          String body,
+                                                          long userId) {
         return service.updatePost(id, new UpdatePostRequest(id, title, body, userId));
     }
 
     @Override
-    public Void deletePost(long id) {
+    public ResponseEntity<Void> deletePost(long id) {
         return service.deletePost(id);
     }
 }

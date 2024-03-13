@@ -7,6 +7,6 @@ public record UserAddress(
         @JsonProperty("suite") String suite,
         @JsonProperty("city") String city,
         @JsonProperty("zipcode") String zipcode,
-        @JsonProperty("geo") GeoAddressResponse geo
+        @JsonProperty("geo") GeoAddress geo
 ) {
 }

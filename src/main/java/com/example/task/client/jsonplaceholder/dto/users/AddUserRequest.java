@@ -1,14 +1,15 @@
 package com.example.task.client.jsonplaceholder.dto.users;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 
 public record AddUserRequest(
-        @JsonProperty("name") String name,
-        @JsonProperty("username") String username,
-        @JsonProperty("email") String email,
-        @JsonProperty("address") UserAddress address,
-        @JsonProperty("phone") String phone,
-        @JsonProperty("website") String website,
-        @JsonProperty("company") UserCompany company
+        @JsonProperty("name") @NotNull String name,
+        @JsonProperty("username") @NotNull String username,
+        @JsonProperty("email") @NotNull String email,
+        @JsonProperty("address") @NotNull UserAddress address,
+        @JsonProperty("phone") @NotNull String phone,
+        @JsonProperty("website") @NotNull String website,
+        @JsonProperty("company") @NotNull UserCompany company
 ) {
 }

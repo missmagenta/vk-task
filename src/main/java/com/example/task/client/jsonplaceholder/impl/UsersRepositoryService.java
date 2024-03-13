@@ -29,5 +29,5 @@ public interface UsersRepositoryService {
     );
 
     @DeleteExchange("/users/{id}")
-    Void deleteUser(@PathVariable("id") long id);
+    ResponseEntity<Void> deleteUser(@PathVariable("id") long id);
 }

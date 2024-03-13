@@ -4,7 +4,6 @@ import com.example.task.client.jsonplaceholder.AlbumsClient;
 import com.example.task.client.jsonplaceholder.PostsClient;
 import com.example.task.client.jsonplaceholder.UsersClient;
 import com.example.task.client.jsonplaceholder.impl.*;
-import com.example.task.service.SlowServiceWithCache;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.CacheManager;
@@ -67,10 +66,5 @@ public class ClientConfig {
     @Bean
     CacheManager cacheManager() {
         return new CaffeineCacheManager();
-    }
-
-    @Bean
-    SlowServiceWithCache slowServiceWithCache() {
-        return new SlowServiceWithCache();
     }
 }
