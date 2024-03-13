@@ -37,12 +37,12 @@ public class AuthenticationService {
     private final JwtUtils jwtUtils;
 
     public Payload authenticateUser(UserAuthRequest loginUser) {
-        User user = userRepository.findByUsername(loginUser.getUsername());
+        User user = userRepository.findByUsername(loginUser.username());
         if (user == null) {
             return new BasePayload(400, "Пользователь не найден.");
         }
 
-        LoginedUser loginedUser = login(user.getUsername(), loginUser.getPassword());
+        LoginedUser loginedUser = login(user.getUsername(), loginUser.password());
         Person person = personRepository.find(user.getPersonId());
         Manager manager = managerRepository.getCurrentByPersonId(person.getId());
         UserRole role = getRoleByManager(manager);
