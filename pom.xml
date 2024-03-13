@@ -212,19 +212,12 @@
                     </execution>
                 </executions>
                 <configuration>
-<!--                    <jdbc>-->
-<!--                        <driver>org.postgresql.Driver</driver>-->
-<!--                        <url>jdbc:postgresql://localhost:5432/vk</url>-->
-<!--                        <user>postgres</user>-->
-<!--                        <password>aboba</password>-->
-<!--                    </jdbc>-->
                     <generator>
                         <database>
                             <includes>.*</includes>  <!-- включаемые подпакеты и файлы -->
                             <excludes>  <!-- исключаемые подпакеты и файлы -->
                                 flyway_schema_history
                             </excludes>
-<!--                            <inputSchema>s336768</inputSchema>  &lt;!&ndash; схема &ndash;&gt;-->
                         </database>
                         <generate>
                             <records>true</records>

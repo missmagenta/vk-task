@@ -10,6 +10,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/vk
     username: ${USERNAME}
     password: ${PASSWORD}
+    driver-class-name: org.postgresql.Driver
 
 echo:
   websocket:

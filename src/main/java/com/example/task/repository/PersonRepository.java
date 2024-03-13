@@ -1,9 +1,6 @@
 package com.example.task.repository;
 
 import com.example.task.mapper.PersonRecordMapper;
-import org.springframework.stereotype.Repository;
-
-
 import com.example.task.model.person.Gender;
 import com.example.task.model.person.Person;
 import org.jooq.Condition;
